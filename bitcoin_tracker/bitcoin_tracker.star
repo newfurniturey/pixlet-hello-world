@@ -13,11 +13,17 @@ AYozjsoBoE45OZi5DRBSnkCAMLhlPBiQGHlAAAAAElFTkSuQmCC
 """)
 
 def main():
-    rep = http.get(COINDESK_PRICE_URL)
+    rep = http.get(COINDESK_PRICE_URL, ttl_seconds = 240)
     if rep.status_code != 200:
         fail("Coindesk request failed with status %d", rep.status_code)
        
     rate = rep.json()["USD"]
+    
+    # for dev purposes only!
+    if rep.headers.get("Tidbyt-Cache-Status") == "HIT":
+        print("Hit! Displaying cached data.")
+    else:
+        print("Miss! Calling CoinDesk API.")
     
     return render.Root(
         child = render.Box(
