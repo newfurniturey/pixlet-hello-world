@@ -20,10 +20,15 @@ def main():
     rate = rep.json()["USD"]
     
     return render.Root(
-        child = render.Row(
-            children = [
-                render.Image(src=BTC_ICON),
-                render.Text("$%d" % rate),
-            ],
+        child = render.Box(
+            render.Row(
+                expanded=True,
+                main_align="space_evenly",
+                cross_align="center",
+                children = [
+                    render.Image(src=BTC_ICON),
+                    render.Text("$%d" % rate),
+                ],
+            )
         )
     )
