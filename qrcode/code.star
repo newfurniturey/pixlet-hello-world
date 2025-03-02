@@ -19,8 +19,10 @@ def main(config):
         code = base64.decode(data)
     
     return render.Root(
-        child = render.Padding(
-            child = render.Image(src = code),
-            pad = 1,
+        child = render.Box(
+            child = render.Padding(
+                child = render.Image(src = code),
+                pad = 1,
+            ),
         ),
     )
